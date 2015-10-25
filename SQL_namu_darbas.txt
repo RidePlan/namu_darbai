@@ -237,11 +237,11 @@ mysql> SELECT b.title, GROUP_CONCAT(a.name ORDER BY a.name) AS names FROM Books 
 5 rows in set (0.00 sec)
 
 4.e) Papildyti knygų lentelę, kad galėtume išsaugoti originalų knygos pavadinimą. (Pavadinime išsaugokite lietuviškas raides).
-mysql> ALTER TABLE Books MODIFY TITLE VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
-mysql> UPDATE Books SET TITLE = "Head First Networking (ąčęėįšųūž)" WHERE bookId = 3;
+mysql> ALTER TABLE Books MODIFY title VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
+mysql> UPDATE Books SET title = "Head First Networking (ąčęėįšųūž)" WHERE bookId = 3;
 mysql> SELECT * FROM Books;
 +--------+--------------------------------------------+------+-------+
-| bookId | TITLE                                      | year | genre |
+| bookId | title                                      | year | genre |
 +--------+--------------------------------------------+------+-------+
 |      1 | Programming F# 3.0, 2nd Edition            | 2012 |       |
 |      2 | Regular Expressions Cookbook, 2nd Edition  | 2012 |       |
