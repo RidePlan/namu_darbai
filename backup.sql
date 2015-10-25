@@ -40,6 +40,29 @@ INSERT INTO `Authors` VALUES (1,'Chris Smith'),(2,'Steven Levithan'),(3,' Jan Go
 UNLOCK TABLES;
 
 --
+-- Table structure for table `BookAuthors`
+--
+
+DROP TABLE IF EXISTS `BookAuthors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BookAuthors` (
+  `authorId` int(11) NOT NULL,
+  `bookId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `BookAuthors`
+--
+
+LOCK TABLES `BookAuthors` WRITE;
+/*!40000 ALTER TABLE `BookAuthors` DISABLE KEYS */;
+INSERT INTO `BookAuthors` VALUES (1,1),(2,2),(4,3),(6,4),(7,5),(3,2),(5,2),(5,5);
+/*!40000 ALTER TABLE `BookAuthors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Books`
 --
 
@@ -64,29 +87,6 @@ LOCK TABLES `Books` WRITE;
 INSERT INTO `Books` VALUES (1,'Programming F# 3.0, 2nd Edition',2012,''),(2,'Regular Expressions Cookbook, 2nd Edition',2012,''),(3,'Head First Networking (ąčęėįšųūž)',2009,''),(4,'The Art of Concurrency',2009,''),(5,'97 Things Every Programmer Should Know',2010,'');
 /*!40000 ALTER TABLE `Books` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `Tarpine`
---
-
-DROP TABLE IF EXISTS `Tarpine`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Tarpine` (
-  `authorId` int(11) NOT NULL,
-  `bookId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Tarpine`
---
-
-LOCK TABLES `Tarpine` WRITE;
-/*!40000 ALTER TABLE `Tarpine` DISABLE KEYS */;
-INSERT INTO `Tarpine` VALUES (1,1),(2,2),(4,3),(6,4),(7,5),(3,2),(5,2),(5,5);
-/*!40000 ALTER TABLE `Tarpine` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -97,4 +97,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-25 22:17:13
+-- Dump completed on 2015-10-25 22:33:31

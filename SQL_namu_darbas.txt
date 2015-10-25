@@ -167,19 +167,19 @@ mysql> SELECT * FROM Books;
 5 rows in set (0.00 sec)
 
 4.b) Tarpinės lentelės Tarpine sukūrimas, tam kad knygos galėtų turėti po kelis autorius.
-mysql> CREATE TABLE Tarpine(authorId int(11) NOT NULL, bookId int(11) NOT NULL);
+mysql> CREATE TABLE BookAuthors(authorId int(11) NOT NULL, bookId int(11) NOT NULL);
 mysql> SHOW TABLES;
 +-----------------+
 | Tables_in_Books |
 +-----------------+
 | Authors         |
 | Books           |
-| Tarpine         |
+| BookAuthors     |
 +-----------------+
 3 rows in set (0.00 sec)
 
-mysql> insert into Tarpine(authorId, bookId) select authorId, bookId from Books;
-mysql> SELECT * FROM Tarpine;
+mysql> INSERT INTO BookAuthors(authorId, bookId) SELECT authorId, bookId FROM Books;
+mysql> SELECT * FROM BookAuthors;
 +----------+--------+
 | authorId | bookId |
 +----------+--------+
@@ -205,10 +205,10 @@ mysql> SELECT * FROM Books;
 +--------+-------------------------------------------+------+-------+
 5 rows in set (0.00 sec)
 
-mysql> INSERT INTO Tarpine (authorId, bookId) values (3, 2);
-mysql> INSERT INTO Tarpine (authorId, bookId) values (5, 2);
-mysql> INSERT INTO Tarpine (authorId, bookId) values (5, 5);
-mysql> SELECT * FROM Tarpine ORDER BY authorId;
+mysql> INSERT INTO BookAuthors (authorId, bookId) values (3, 2);
+mysql> INSERT INTO BookAuthors (authorId, bookId) values (5, 2);
+mysql> INSERT INTO BookAuthors (authorId, bookId) values (5, 5);
+mysql> SELECT * FROM BookAuthors ORDER BY authorId;
 +----------+--------+
 | authorId | bookId |
 +----------+--------+
@@ -224,7 +224,7 @@ mysql> SELECT * FROM Tarpine ORDER BY authorId;
 8 rows in set (0.00 sec)
 
 4.d) Išrinkite visas knygas su autoriais (autorius, jei jų daugiau nei vienas atskirkite kableliais)
-mysql> SELECT b.title, GROUP_CONCAT(a.name ORDER BY a.name) AS names FROM Books AS b LEFT JOIN Tarpine AS ba ON b.bookId = ba.bookId LEFT JOIN Authors AS a ON ba.authorId = a.authorId GROUP BY b.title Order BY b.title;
+mysql> SELECT b.title, GROUP_CONCAT(a.name ORDER BY a.name) AS names FROM Books AS b LEFT JOIN BookAuthors AS ba ON b.bookId = ba.bookId LEFT JOIN Authors AS a ON ba.authorId = a.authorId GROUP BY b.title Order BY b.title;
 +-------------------------------------------+---------------------------------------------+
 | title                                     | names                                       |
 +-------------------------------------------+---------------------------------------------+
