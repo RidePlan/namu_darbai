@@ -5,7 +5,7 @@ mysql> CREATE DATABASE Books;
 mysql -u root -p Books  <~/Desktop/Books.sql
 
 3.a) Papildykite autorių lentelę įrašais.
-mysql> ALTER TABLE Authors MODIFY name VARCHAR(255) CHARACTER SET cp1257 collate cp1257_lithuanian_ci NOT NULL;
+mysql> ALTER TABLE Authors MODIFY name VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 mysql> INSERT INTO Authors (name) VALUES ('Ričardas Jonaitis');
 mysql> INSERT INTO Authors (name) VALUES ('Kęstutis Triponis');
 mysql> INSERT INTO Authors (name) VALUES ('Ramūnas Liuokaitis');
@@ -237,7 +237,7 @@ mysql> SELECT b.title, GROUP_CONCAT(a.name ORDER BY a.name) AS names FROM Books 
 5 rows in set (0.00 sec)
 
 4.e) Papildyti knygų lentelę, kad galėtume išsaugoti originalų knygos pavadinimą. (Pavadinime išsaugokite lietuviškas raides).
-mysql> ALTER TABLE Books MODIFY TITLE VARCHAR(255) CHARACTER SET cp1257 collate cp1257_lithuanian_ci;
+mysql> ALTER TABLE Books MODIFY TITLE VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
 mysql> UPDATE Books SET TITLE = "Head First Networking (ąčęėįšųūž)" WHERE bookId = 3;
 mysql> SELECT * FROM Books;
 +--------+--------------------------------------------+------+-------+

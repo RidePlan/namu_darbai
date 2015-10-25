@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `Authors`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Authors` (
   `authorId` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET cp1257 COLLATE cp1257_lithuanian_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   PRIMARY KEY (`authorId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `Books`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Books` (
   `bookId` int(11) NOT NULL AUTO_INCREMENT,
-  `TITLE` varchar(255) CHARACTER SET cp1257 COLLATE cp1257_lithuanian_ci DEFAULT NULL,
+  `TITLE` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `year` year(4) DEFAULT NULL,
   `genre` varchar(50) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`bookId`)
@@ -97,4 +97,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-25 21:41:46
+-- Dump completed on 2015-10-25 21:56:03

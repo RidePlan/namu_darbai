@@ -1,4 +1,4 @@
-ALTER TABLE Authors MODIFY name VARCHAR(255) CHARACTER SET cp1257 collate cp1257_lithuanian_ci NOT NULL;
+ALTER TABLE Authors MODIFY name VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 
 INSERT INTO Authors (name) VALUES ('Ričardas Jonaitis');
 INSERT INTO Authors (name) VALUES ('Kęstutis Triponis');
@@ -26,6 +26,6 @@ INSERT INTO Tarpine (authorId, bookId) values (3, 2);
 INSERT INTO Tarpine (authorId, bookId) values (5, 2);
 INSERT INTO Tarpine (authorId, bookId) values (5, 5);
 
-ALTER TABLE Books MODIFY TITLE VARCHAR(255) CHARACTER SET cp1257 collate cp1257_lithuanian_ci;
+ALTER TABLE Books MODIFY TITLE VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
 UPDATE Books SET TITLE = "Head First Networking (ąčęėįšųūž)" WHERE bookId = 3;
 
