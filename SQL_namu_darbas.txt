@@ -252,7 +252,5 @@ mysql> SELECT * FROM Books;
 5 rows in set (0.00 sec)
 
 5. Duomenų bazės kopija.
-set path=<~/Desktop/
-mysqldump -u root -p Books > team5.sql
-
+mysqldump -u root -p Books > backup.sql
 
