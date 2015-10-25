@@ -139,7 +139,7 @@ mysql> SELECT * FROM Authors;
 
 
 3.g) Pašalinkite knygas, kurios neturi autorių.
-DELETE b FROM Books b LEFT JOIN Authors a ON b.authorId = a.authorId WHERE a.authorId IS NULL;
+mysql> DELETE FROM Books WHERE authorId IS NULL;
 mysql> SELECT * FROM Books;
 +--------+----------+-------------------------------------------+------+
 | bookId | authorId | title                                     | year |
@@ -167,7 +167,7 @@ mysql> SELECT * FROM Books;
 5 rows in set (0.00 sec)
 
 4.b) Tarpinės lentelės Tarpine sukūrimas, tam kad knygos galėtų turėti po kelis autorius.
-mysql> CREATE TABLE Tarpine(authorId int(11) default null, bookId int(11) default null);
+mysql> CREATE TABLE Tarpine(authorId int(11) NOT NULL, bookId int(11) NOT NULL);
 mysql> SHOW TABLES;
 +-----------------+
 | Tables_in_Books |
