@@ -84,7 +84,6 @@ mysql> SELECT b.bookId, b.title, IF(a.name IS NULL,'<Autoriaus nėra>',a.name) A
 +--------+---------------------------------------------------+---------------------+
 11 rows in set (0.00 sec)
 
-
 3.e) Suskaičiuokite kiek knygų kiekvieno autoriaus yra duomenų bazėje (įtraukdami autorius kurie neturi knygų, bei neitraukdami šių autorių).
 mysql> SELECT a.name, COUNT(b.bookId) AS BookCount FROM Authors a LEFT JOIN Books b ON a.authorId = b.authorId GROUP BY a.name;
 +---------------------+-----------+
@@ -179,7 +178,7 @@ mysql> DESCRIBE Books;
 +----------+--------------+------+-----+---------+----------------+
 5 rows in set (0.00 sec)
 
-4.b) Tarpinės lentelės BookAuthors sukūrimas, tam kad knygos galėtų turėti po kelis autorius.
+4.b) Tarpinės lentelės book2authors sukūrimas, tam kad knygos galėtų turėti po kelis autorius.
 mysql> CREATE TABLE book2authors(id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, authorId int(11) NOT NULL, bookId int(11) NOT NULL);
 mysql> SHOW TABLES;
 +-----------------+
