@@ -4,16 +4,20 @@ DELETE FROM `Books` WHERE `authorId` IS NULL;
 
 ALTER TABLE `Books` ADD COLUMN `genre` VARCHAR(50) NOT NULL;
 
-CREATE TABLE `BookAuthors` (
+CREATE TABLE `book2authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `authorId` int(11) NOT NULL,
-  `bookId` int(11) NOT NULL
+  `bookId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-INSERT INTO `BookAuthors` (`authorId`, `bookId`) SELECT `authorId`, `bookId` FROM `Books`;
+UPDATE `Authors` SET name = TRIM(name);
+
+INSERT INTO `book2authors` (`authorId`, `bookId`) SELECT `authorId`, `bookId` FROM `Books`;
 
 ALTER TABLE `Books` DROP COLUMN `authorId`;
 
-INSERT INTO `BookAuthors` (`authorId`, `bookId`) VALUES
+INSERT INTO `book2authors` (`authorId`, `bookId`) VALUES
 (3, 2),
 (5, 2),
 (5, 5);

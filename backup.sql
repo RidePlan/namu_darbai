@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.25, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: Books
 -- ------------------------------------------------------
--- Server version	5.6.25-0ubuntu1
+-- Server version	5.5.44-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ CREATE TABLE `Authors` (
   `authorId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`authorId`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,31 +35,8 @@ CREATE TABLE `Authors` (
 
 LOCK TABLES `Authors` WRITE;
 /*!40000 ALTER TABLE `Authors` DISABLE KEYS */;
-INSERT INTO `Authors` VALUES (1,'Chris Smith'),(2,'Steven Levithan'),(3,' Jan Goyvaerts'),(4,'Ryan Benedetti'),(5,' Al Anderson'),(6,'Clay Breshears'),(7,'Kevlin Henney');
+INSERT INTO `Authors` VALUES (1,'Chris Smith'),(2,'Steven Levithan'),(3,'Jan Goyvaerts'),(4,'Ryan Benedetti'),(5,'Al Anderson'),(6,'Clay Breshears'),(7,'Kevlin Henney');
 /*!40000 ALTER TABLE `Authors` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `BookAuthors`
---
-
-DROP TABLE IF EXISTS `BookAuthors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `BookAuthors` (
-  `authorId` int(11) NOT NULL,
-  `bookId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `BookAuthors`
---
-
-LOCK TABLES `BookAuthors` WRITE;
-/*!40000 ALTER TABLE `BookAuthors` DISABLE KEYS */;
-INSERT INTO `BookAuthors` VALUES (1,1),(2,2),(4,3),(6,4),(7,5),(3,2),(5,2),(5,5);
-/*!40000 ALTER TABLE `BookAuthors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -75,7 +52,7 @@ CREATE TABLE `Books` (
   `year` year(4) DEFAULT NULL,
   `genre` varchar(50) COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`bookId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +64,31 @@ LOCK TABLES `Books` WRITE;
 INSERT INTO `Books` VALUES (1,'Programming F# 3.0, 2nd Edition',2012,''),(2,'Regular Expressions Cookbook, 2nd Edition',2012,''),(3,'Head First Networking (ąčęėįšųūž)',2009,''),(4,'The Art of Concurrency',2009,''),(5,'97 Things Every Programmer Should Know',2010,'');
 /*!40000 ALTER TABLE `Books` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `book2authors`
+--
+
+DROP TABLE IF EXISTS `book2authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book2authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `authorId` int(11) NOT NULL,
+  `bookId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book2authors`
+--
+
+LOCK TABLES `book2authors` WRITE;
+/*!40000 ALTER TABLE `book2authors` DISABLE KEYS */;
+INSERT INTO `book2authors` VALUES (1,1,1),(2,2,2),(3,4,3),(4,6,4),(5,7,5),(8,3,2),(9,5,2),(10,5,5);
+/*!40000 ALTER TABLE `book2authors` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -97,4 +99,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-25 22:45:27
+-- Dump completed on 2015-10-27 10:34:39
