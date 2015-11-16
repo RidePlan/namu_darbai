@@ -1,0 +1,87 @@
+1. 3 sudėtingi select’ai (sumos, grupavimas, rūšiavimas)
+
+SELECT SUM(m.price * jm.count) AS totalPrice, SUM(m.cost * jm.count) AS totalCost
+FROM JobsRegister_Materials jm LEFT JOIN Materials m ON m.materialId = jm.materialId;
++----------------+---------------+
+| totalPrice     | totalCost     |
++----------------+---------------+
+| 13471483.03568 | 6741117.16352 |
++----------------+---------------+
+1 row in set (0.82 sec)
+
+SELECT s.name, js.goal, COUNT(*) AS count
+FROM JobsRegister_Services js LEFT JOIN Services s ON s.serviceId = js.serviceId
+WHERE s.serviceId IS NOT NULL AND js.goal IS NOT NULL
+GROUP BY s.serviceId, js.goal;
++----------------------------------------------------------------------------+-----------+--------+
+| name                                                                       | goal      | count  |
++----------------------------------------------------------------------------+-----------+--------+
+| 3. Dezinsekcija, Inspekcija/Monitorigas                                    | primary   | 132730 |
+| 3. Dezinsekcija, Inspekcija/Monitorigas                                    | secondary |   2455 |
+| 3. Dezinsekcija, Inspekcija/Monitorigas                                    | order     |   4026 |
+| Dezinsekcija (grūdiniai kenkėjai)                                          | primary   |   1090 |
+| Dezinsekcija (grūdiniai kenkėjai)                                          | secondary |     41 |
+| Dezinsekcija (grūdiniai kenkėjai)                                          | order     |    331 |
+| 2. Deratizacija, Inspekcija/Monitoringas                                   | primary   | 127409 |
+| 2. Deratizacija, Inspekcija/Monitoringas                                   | secondary |   1060 |
+| 2. Deratizacija, Inspekcija/Monitoringas                                   | order     |   1205 |
+| 4. Dezinfekcija, Inpskecija/Monitoringas                                   | primary   |   5770 |
+| 4. Dezinfekcija, Inpskecija/Monitoringas                                   | secondary |     48 |
+| 4. Dezinfekcija, Inpskecija/Monitoringas                                   | order     |    568 |
+| Fumigacija                                                                 | primary   |    383 |
+| Fumigacija                                                                 | secondary |     11 |
+| Fumigacija                                                                 | order     |    756 |
+| Kurmių kontrolė                                                            | primary   |     24 |
+| Kurmių kontrolė                                                            | order     |      3 |
+| Paukščių kontrolė                                                          | primary   |   2019 |
+| Paukščių kontrolė                                                          | secondary |     69 |
+| Paukščių kontrolė                                                          | order     |    204 |
+| 5. Inspekcija/Monitoringas                                                 | primary   | 293172 |
+| 5. Inspekcija/Monitoringas                                                 | secondary |    726 |
+| 5. Inspekcija/Monitoringas                                                 | order     |    870 |
+| Generalinė inspekcija                                                      | primary   |    665 |
+| Generalinė inspekcija                                                      | order     |      2 |
+| Dalinė dezinsekcija (nesugeriančių paviršių padengimas insekticidais)      | primary   |    293 |
+| Dalinė dezinsekcija (nesugeriančių paviršių padengimas insekticidais)      | order     |      6 |
+| Ozonavimas                                                                 | primary   |    144 |
+| Ozonavimas                                                                 | secondary |      7 |
+| Ozonavimas                                                                 | order     |    200 |
+| Oro gaivinimas                                                             | primary   |    295 |
+| Oro gaivinimas                                                             | secondary |      1 |
+| Oro gaivinimas                                                             | order     |      2 |
+| Kenkėjų kontrolės paslaugos                                                | primary   |     75 |
+| Kenkėjų kontrolės paslaugos                                                | secondary |      6 |
+| Kenkėjų kontrolės paslaugos                                                | order     |     18 |
+| Papildomas inventorius                                                     | primary   |     93 |
+| Papildomas inventorius                                                     | order     |      1 |
+| Dezinsekcija - insekt. lempų aptarnavimas                                  | primary   |   1534 |
+| Dezinsekcija - insekt. lempų aptarnavimas                                  | secondary |      1 |
+| 1. Deratizacija, Dezinsekcija, Inspekcija/Monitoringas                     | primary   |  27285 |
+| 1. Deratizacija, Dezinsekcija, Inspekcija/Monitoringas                     | secondary |    100 |
+| 1. Deratizacija, Dezinsekcija, Inspekcija/Monitoringas                     | order     |    114 |
+| Siurblio nuoma                                                             | order     |      1 |
+| Biologinė inspekcija                                                       | primary   |      5 |
+| Didelių spąstų gyvunams nuoma                                              | primary   |     11 |
+| Didelių spąstų gyvunams nuoma                                              | order     |      4 |
+| Oro valymas "Medixair"                                                     | primary   |      6 |
+| Oro valymas "Medixair"                                                     | order     |      1 |
+| 6. Deratizacija, Dezinsekcija, Dezinfekcija, Inspekcija/Monitoringas       | primary   |      5 |
++----------------------------------------------------------------------------+-----------+--------+
+50 rows in set (0.93 sec)
+
+SELECT j.arrivalDate
+FROM JobsRegister_Services js LEFT JOIN JobsRegister j ON j.jobsRegisterId = js.jobsRegisterId
+WHERE j.arrivalDate IS NOT NULL
+ORDER BY j.arrivalDate
+LIMIT 5;
++-------------+
+| arrivalDate |
++-------------+
+| 0000-00-00  |
+| 0000-00-00  |
+| 0000-00-00  |
+| 2002-01-29  |
+| 2005-09-02  |
++-------------+
+5 rows in set (0.77 sec)
+
