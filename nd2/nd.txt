@@ -85,3 +85,27 @@ LIMIT 5;
 +-------------+
 5 rows in set (0.77 sec)
 
+
+2. 2 update’ai (suskaičiuoti sumą ir medžiagų kiekį)
+
+# Sukuriam papildomus laukus update'ams
+ALTER TABLE Materials ADD COLUMN totalPrice DECIMAL(15,2) UNSIGNED NOT NULL, ADD COLUMN totalCount DECIMAL(15,2) UNSIGNED NOT NULL;
+
+UPDATE Materials m JOIN (
+  SELECT jm.materialId, SUM(jm.count) AS tc
+  FROM JobsRegister_Materials jm
+  GROUP BY jm.materialId
+) jms ON jms.materialId = m.materialId
+SET m.totalCount = m.price * jms.tc;
+Query OK, 232 rows affected, 69 warnings (0,51 sec)
+Rows matched: 233  Changed: 232  Warnings: 69
+
+UPDATE Materials m JOIN (
+  SELECT jm.materialId, SUM(jm.count) AS tc
+  FROM JobsRegister_Materials jm
+  GROUP BY jm.materialId
+) jms ON jms.materialId = m.materialId
+SET m.totalCount = jms.tc;
+Query OK, 233 rows affected, 16 warnings (0,57 sec)
+Rows matched: 233  Changed: 233  Warnings: 16
+
