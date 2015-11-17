@@ -124,3 +124,19 @@ FROM JobsRegister_Services js LEFT JOIN JobsRegister j ON j.jobsRegisterId = js.
 WHERE j.contractId IS NULL;
 Query OK, 85 rows affected (0.93 sec)
 
+
+4. 3 insert’ai (po 1 įrašą, po 1000 įrašų, “load from file”)
+
+source insert.sql
+Query OK, 1 row affected (0.01 sec)
+...
+
+source insert2.sql
+Query OK, 1000 rows affected (0.06 sec)
+Records: 1000  Duplicates: 0  Warnings: 0
+...
+
+LOAD DATA INFILE 'insert3.txt' INTO TABLE JobsRegister;
+Query OK, 3000 rows affected, 21000 warnings (0.17 sec)
+Records: 3000  Deleted: 0  Skipped: 0  Warnings: 21000
+
